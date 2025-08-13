@@ -1,0 +1,17 @@
+# .gitpod.yml
+tasks:
+  - name: Setup and Launch Arch Container
+    command: |
+      echo "➡️ Starting Arch Linux container..."
+      # Pull the latest Arch Linux image
+      docker pull archlinux:latest
+
+      echo "✅ Container is ready. All commands should now be run inside this container."
+      echo "To begin, run the setup script inside the container: /build/setup-arch.sh"
+
+      # Launch the container, mounting the current directory into /build
+      # --rm cleans up the container when you exit
+      docker run -it --rm \
+        -v "$(pwd):/build" \
+        --name cachyos-builder \
+        archlinux:latest /bin/bash
